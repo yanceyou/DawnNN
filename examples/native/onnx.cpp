@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "conv_0.layer.hpp"
+#include "dawnnn/Layer.h"
 
 void read(std::string path, std::vector<unsigned char> &buffer) {
   std::ifstream read_file(path, std::ios::binary);
@@ -52,6 +53,9 @@ void save(std::string fname, const std::vector<float> &output) {
 }
 
 int main() {
+  auto t = new dawnnn::GPUInfo();
+  t->ToString();
+
   std::vector<unsigned char> data;
   read("examples/native/input.1.3.224.224.bin", data);
   std::cout << data.size() << std::endl;
@@ -61,7 +65,7 @@ int main() {
   save("build/0-mean-std.txt", input);
   std::vector<int> input_dims = {1, 3, 224, 224};
 
-  std::vector<float> output(1*56*112*112);
+  std::vector<float> output(1 * 56 * 112 * 112);
   std::vector<int> output_dims = {1, 56, 112, 112};
   conv_0(input, input_dims, output, output_dims);
   save("build/0-output.txt", output);

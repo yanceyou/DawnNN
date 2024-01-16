@@ -7,8 +7,25 @@ if (DAWNNN_SHARED_LIB)
 endif()
 
 target_sources(dawnnn
-  INTERFACE
+  PUBLIC
+    "Layer.h"
   PRIVATE
     "Layer.cpp"
-    "Layer.h"
+)
+
+message("-- dawnnn_SOURCE_DIR: ${dawnnn_SOURCE_DIR}/include")
+target_include_directories(dawnnn
+  PUBLIC
+    "${dawnnn_SOURCE_DIR}/include"
+)
+
+target_link_libraries(dawnnn PRIVATE
+  dawn_internal_config
+  dawncpp
+  dawn_proc
+  dawn_common
+  dawn_glfw
+  dawn_native
+  dawn_wire
+  dawn_utils
 )
