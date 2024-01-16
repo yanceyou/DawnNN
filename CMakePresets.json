@@ -4,7 +4,15 @@
     {
       "name": "default",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build",
+      "binaryDir": "${sourceDir}/build/default",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "default-macOS",
+      "generator": "Xcode",
+      "binaryDir": "${sourceDir}/build/macOS",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug"
       }
@@ -14,6 +22,10 @@
     {
       "name": "default",
       "configurePreset": "default"
+    },
+    {
+      "name": "default-macOS",
+      "configurePreset": "default-macOS"
     }
   ]
 }
